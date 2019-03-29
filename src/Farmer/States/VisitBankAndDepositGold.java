@@ -5,15 +5,23 @@ import Farmer.Bob;
 public class VisitBankAndDepositGold extends StateMachine {
 
     @Override
+    public void Enter(Bob bob) {
+        System.out.println("Indo pro banco...");
+    }
+
+    @Override
     public void Run(Bob bob) {
-        bob.Wealthy += bob.Pocket;
-        bob.Pocket = 0;
-        System.out.printf("Depositei muita grana! Agora no banco eu tenho %d\n", bob.Wealthy);
-        if (bob.Wealthy >= 200){
+        bob.DepositGold();
+        if (bob.IsWealthy()){
             bob.ChangeState(new GoHomeAndSleepTilRested());
         }
         else{
             bob.ChangeState(new EnterMineAndDigForNugget());
         }
+    }
+
+    @Override
+    public void Exit(Bob bob) {
+        System.out.println("saindo do banco...");
     }
 }

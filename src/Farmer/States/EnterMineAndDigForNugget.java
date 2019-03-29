@@ -4,22 +4,26 @@ import Farmer.Bob;
 
 public class EnterMineAndDigForNugget extends StateMachine{
 
+    @Override
+    public void Enter(Bob bob) {
+        System.out.println("Indo TRAMPAR");
+    }
 
     @Override
     public void Run(Bob bob){
-        bob.Fadige++;
-        bob.Thirst++;
-        bob.Pocket++;
-        System.out.printf("Mineirando... bolsos em %d\n", bob.Pocket);
-
-        if (bob.Pocket >= 20){
+        bob.Mine();
+        if (bob.PocketsFull()){
             bob.ChangeState(new VisitBankAndDepositGold());
             return;
         }
 
-        if (bob.Thirst >= 80){
+        if (bob.IsThirsty()){
             bob.ChangeState(new QuenchThirst());
         }
+    }
 
+    @Override
+    public void Exit(Bob bob) {
+        System.out.println("saindo da FIRMA");
     }
 }
