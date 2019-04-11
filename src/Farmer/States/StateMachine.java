@@ -1,11 +1,9 @@
 package Farmer.States;
 
-import Farmer.Bob;
+public interface StateMachine<NPC> {
 
-public abstract class StateMachine {
-
-    public abstract void Enter(Bob bob);
-    public abstract void Run(Bob bob);
-    public abstract void Exit(Bob bob);
+    void Enter(NPC farmer);
+    void Run(NPC farmer);
+    void Exit(NPC farmer);
 
 }

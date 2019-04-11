@@ -1,12 +1,8 @@
-import Farmer.Bob;
+import Companhia.CompanhiaDeGraos;
 
 public class Main {
 
-    public static void main(String[] args){
-        Bob bob = new Bob();
-
-        bob.Run();
-
+    public static void main(String[] args) throws InterruptedException {
+        CompanhiaDeGraos.getInstance().Run();
     }
-
 }
