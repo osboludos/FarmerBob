@@ -1,9 +1,9 @@
 package Farmer.States.BillyStates;
 
 import Farmer.FarmerBilly;
-import Farmer.States.StateMachine;
+import Farmer.States.State;
 
-public class WalkingFarm implements StateMachine<FarmerBilly> {
+public class WalkingFarm implements State<FarmerBilly> {
 
     private WalkingFarm(){ }
 

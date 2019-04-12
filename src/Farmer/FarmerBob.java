@@ -1,12 +1,11 @@
 package Farmer;
 import Companhia.CompanhiaDeGraos;
+import Farmer.States.State;
 import Farmer.States.StateMachine;
 
 import java.util.Random;
 
-public class FarmerBob implements IFarmer {
-
-    private StateMachine m_currentState;
+public class FarmerBob extends Farmer {
 
     private int Thirst = 0;
 
@@ -20,25 +19,23 @@ public class FarmerBob implements IFarmer {
 
     private String Name;
 
-    public FarmerBob(String name, StateMachine<FarmerBob> initialState){
+    public FarmerBob(String name, State<FarmerBob> initialState){
         Name = name;
+        m_stateMachine = new StateMachine(this);
         ChangeState(initialState);
     }
 
     public void Run(){
-        m_currentState.Run(this);
+        m_stateMachine.Update();
         if (Whacked > 30){
             System.out.println("Farmer " + Name + " trabalhou demais e morreu!");
             CompanhiaDeGraos.getInstance().FarmerIsDead(this);
         }
     }
 
-    public void ChangeState(StateMachine next){
-        if (m_currentState != null){
-            m_currentState.Exit(this);
-        }
-        m_currentState = next;
-        m_currentState.Enter(this);
+
+    public void ChangeState(State next){
+        m_stateMachine.ChangeState(next);
     }
 
     public boolean IsSatisfied(){

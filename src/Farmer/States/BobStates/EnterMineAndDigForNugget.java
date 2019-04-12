@@ -1,9 +1,10 @@
 package Farmer.States.BobStates;
 
 import Farmer.FarmerBob;
-import Farmer.States.StateMachine;
+import Farmer.States.GlobalStates.GoToBathroom;
+import Farmer.States.State;
 
-public class EnterMineAndDigForNugget implements StateMachine<FarmerBob> {
+public class EnterMineAndDigForNugget implements State<FarmerBob> {
 
     private EnterMineAndDigForNugget(){ }
 
@@ -29,6 +30,8 @@ public class EnterMineAndDigForNugget implements StateMachine<FarmerBob> {
         if (farmerBob.IsThirsty()){
             farmerBob.ChangeState(QuenchThirst.getInstance());
         }
+
+        farmerBob.GetStateMachine().ChangeGlobalState(GoToBathroom.getInstance());
     }
 
     @Override

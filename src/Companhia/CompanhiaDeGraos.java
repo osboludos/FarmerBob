@@ -17,8 +17,8 @@ public class CompanhiaDeGraos {
         return instance != null ? instance : (instance = new CompanhiaDeGraos());
     }
 
-    private ArrayList<IFarmer> m_workers = new ArrayList<>();
-    private ArrayList<IFarmer> m_deadWorkers = new ArrayList<>();
+    private ArrayList<Farmer> m_workers = new ArrayList<>();
+    private ArrayList<Farmer> m_deadWorkers = new ArrayList<>();
 
     public void FarmerIsDead(FarmerBob farmerBob){
         m_deadWorkers.add(farmerBob);
@@ -29,7 +29,6 @@ public class CompanhiaDeGraos {
 
         m_workers.add(new FarmerBob("Jozoal", QuenchThirst.getInstance()));
         m_workers.add(new FarmerBilly(LookAtSky.getInstance()));
-        //FarmerBilly farmerBilly = new FarmerBilly(LookAtSky.getInstance());
 
         while (true) {
             Thread.sleep(1000);
@@ -43,7 +42,7 @@ public class CompanhiaDeGraos {
             });
 
             while (!m_deadWorkers.isEmpty()) {
-                IFarmer dead = m_deadWorkers.get(0);
+                Farmer dead = m_deadWorkers.get(0);
                 m_workers.remove(dead);
                 m_deadWorkers.remove(dead);
             }

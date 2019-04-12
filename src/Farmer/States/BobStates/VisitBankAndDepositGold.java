@@ -1,9 +1,9 @@
 package Farmer.States.BobStates;
 
 import Farmer.FarmerBob;
-import Farmer.States.StateMachine;
+import Farmer.States.State;
 
-public class VisitBankAndDepositGold implements StateMachine<FarmerBob> {
+public class VisitBankAndDepositGold implements State<FarmerBob> {
 
     private VisitBankAndDepositGold(){ }
 

@@ -1,9 +1,9 @@
 package Farmer.States.BobStates;
 
 import Farmer.FarmerBob;
-import Farmer.States.StateMachine;
+import Farmer.States.State;
 
-public class QuenchThirst implements StateMachine<FarmerBob> {
+public class QuenchThirst implements State<FarmerBob> {
 
     private QuenchThirst(){ }
 

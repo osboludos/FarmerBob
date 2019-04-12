@@ -1,9 +1,9 @@
 package Farmer.States.BobStates;
 
 import Farmer.FarmerBob;
-import Farmer.States.StateMachine;
+import Farmer.States.State;
 
-public class GoHomeAndSleepTilRested implements StateMachine<FarmerBob> {
+public class GoHomeAndSleepTilRested implements State<FarmerBob> {
 
     private GoHomeAndSleepTilRested(){ }
 

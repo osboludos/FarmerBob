@@ -1,31 +1,27 @@
 package Farmer;
 
+import Farmer.States.State;
 import Farmer.States.StateMachine;
 
 import java.util.Random;
 
-public class FarmerBilly implements IFarmer{
-
-    private StateMachine<FarmerBilly> m_currentState;
+public class FarmerBilly extends Farmer {
 
     public int tedio=0;
 
     public int next;
 
-    public FarmerBilly(StateMachine<FarmerBilly> initialState){
+    public FarmerBilly(State<FarmerBilly> initialState){
+        m_stateMachine = new StateMachine(this);
         ChangeState(initialState);
     }
 
     public void Run(){
-        m_currentState.Run(this);
+        m_stateMachine.Update();
     }
 
-    public void ChangeState(StateMachine next){
-        if (m_currentState != null){
-            m_currentState.Exit(this);
-        }
-        m_currentState = next;
-        m_currentState.Enter(this);
+    public void ChangeState(State next){
+        m_stateMachine.ChangeState(next);
     }
 
     public int Randomi(){
