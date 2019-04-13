@@ -1,6 +1,7 @@
 package Farmer.States;
 
 import Farmer.Farmer;
+import Farmer.States.MessageManager.Message;
 
 public class StateMachine {
 
@@ -48,6 +49,17 @@ public class StateMachine {
         }
     }
 
+    public boolean handleMessage(Message msg)
+    {
+        //Global state
+        if(m_currentState.onMessage(m_owner, msg)) return  true;
+
+        //Normal State
+        if(m_currentGlobalState != null && m_currentGlobalState.onMessage(m_owner, msg)) return true;
+
+        return false;
+
+    }
     public State<Farmer> GetCurrentState(){
         return m_currentState;
     }

@@ -1,6 +1,10 @@
 package Farmer.States.BobStates;
 
+import Farmer.Farmer;
 import Farmer.FarmerBob;
+import Farmer.States.Entity.EntityManager;
+import Farmer.States.MessageManager.Message;
+import Farmer.States.MessageManager.MessageDispatcher;
 import Farmer.States.State;
 
 public class GoHomeAndSleepTilRested implements State<FarmerBob> {
@@ -14,12 +18,19 @@ public class GoHomeAndSleepTilRested implements State<FarmerBob> {
     }
 
     @Override
-    public void Enter(FarmerBob farmerBob) {
+    public void Enter(FarmerBob farmerBob)
+    {
+        farmerBob.BillyWorkIsDone(false);
+        Farmer billy = EntityManager.getInstance().getEntity("Billy");
+
+        MessageDispatcher.getInstance().DispatchMessage(farmerBob, billy, "VAI TRABALHAR VAGABUNDO");
+
         System.out.println("Farmer " + farmerBob.getName() + " Indo TORAR");
     }
 
     @Override
-    public void Run(FarmerBob farmerBob) {
+    public void Run(FarmerBob farmerBob)
+    {
         farmerBob.Rest();
         if (farmerBob.IsRested()){
             farmerBob.ChangeState(EnterMineAndDigForNugget.getInstance());
@@ -30,4 +41,9 @@ public class GoHomeAndSleepTilRested implements State<FarmerBob> {
     public void Exit(FarmerBob farmerBob) {
         System.out.println("Farmer " + farmerBob.getName() + " ALVORADAAAAAAAA");
     }
+
+    public boolean onMessage(Farmer farmer, Message msg) {
+        return false;
+    }
+
 }

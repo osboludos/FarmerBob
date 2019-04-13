@@ -10,8 +10,7 @@ public class CompanhiaDeGraos {
 
     private static CompanhiaDeGraos instance = null;
 
-    private CompanhiaDeGraos(){
-    }
+    private CompanhiaDeGraos(){}
 
     public static CompanhiaDeGraos getInstance(){
         return instance != null ? instance : (instance = new CompanhiaDeGraos());

@@ -5,7 +5,7 @@ import Farmer.States.StateMachine;
 
 import java.util.Random;
 
-public class FarmerBob extends Farmer {
+public class FarmerBob extends  Farmer{
 
     private int Thirst = 0;
 
@@ -17,11 +17,14 @@ public class FarmerBob extends Farmer {
 
     private int Whacked = 0;
 
+    private boolean BillyWorked = false;
+
     private String Name;
 
     public FarmerBob(String name, State<FarmerBob> initialState){
+        super(name);
         Name = name;
-        m_stateMachine = new StateMachine(this);
+        m_stateMachine = new StateMachine (this);
         ChangeState(initialState);
     }
 
@@ -33,6 +36,9 @@ public class FarmerBob extends Farmer {
         }
     }
 
+
+    @Override
+    public void Update() {  m_stateMachine.Update(); }
 
     public void ChangeState(State next){
         m_stateMachine.ChangeState(next);
@@ -93,5 +99,6 @@ public class FarmerBob extends Farmer {
         return Name;
     }
 
+    public void BillyWorkIsDone(boolean worked)   { BillyWorked = worked; }
 
 }
