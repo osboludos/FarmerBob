@@ -1,8 +1,8 @@
-package Farmer.States.BobStates;
+package WorkerManager.Farmer.States.BobStates;
 
-import Farmer.FarmerBob;
-import Farmer.States.GlobalStates.GoToBathroom;
-import Farmer.States.State;
+import WorkerManager.Farmer.FarmerBob;
+import WorkerManager.Farmer.States.MessageManager.Message;
+import WorkerManager.Farmer.States.State;
 
 public class EnterMineAndDigForNugget implements State<FarmerBob> {
 
@@ -16,26 +16,29 @@ public class EnterMineAndDigForNugget implements State<FarmerBob> {
 
     @Override
     public void Enter(FarmerBob farmerBob) {
-        System.out.println("Farmer " + farmerBob.getName() +" Indo TRAMPAR");
+        System.out.println("WorkerManager/Farmer " + farmerBob.GetName() +" Indo TRAMPAR");
     }
 
     @Override
     public void Run(FarmerBob farmerBob){
         farmerBob.Mine();
         if (farmerBob.PocketsFull()){
-            farmerBob.ChangeState(VisitBankAndDepositGold.getInstance());
+            farmerBob.GetStateMachine().ChangeState(VisitBankAndDepositGold.getInstance());
             return;
         }
 
         if (farmerBob.IsThirsty()){
-            farmerBob.ChangeState(QuenchThirst.getInstance());
+            farmerBob.GetStateMachine().ChangeState(QuenchThirst.getInstance());
         }
-
-        farmerBob.GetStateMachine().ChangeGlobalState(GoToBathroom.getInstance());
     }
 
     @Override
     public void Exit(FarmerBob farmerBob) {
-        System.out.println("Farmer " + farmerBob.getName() + " saindo da FIRMA");
+        System.out.println("WorkerManager/Farmer " + farmerBob.GetName() + " saindo da FIRMA");
+    }
+
+    @Override
+    public boolean onMessage(FarmerBob farmer, Message msg) {
+        return false;
     }
 }

@@ -1,6 +1,6 @@
-package Farmer.States;
+package WorkerManager.Farmer.States;
 
-import Farmer.States.MessageManager.Message;
+import WorkerManager.Farmer.States.MessageManager.Message;
 
 public interface State<NPC> {
 

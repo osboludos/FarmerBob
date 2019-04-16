@@ -1,7 +1,8 @@
-package Farmer.States.BillyStates;
+package WorkerManager.Farmer.States.BillyStates;
 
-import Farmer.FarmerBilly;
-import Farmer.States.State;
+import WorkerManager.Farmer.FarmerBilly;
+import WorkerManager.Farmer.States.MessageManager.Message;
+import WorkerManager.Farmer.States.State;
 
 public class WalkingFarm implements State<FarmerBilly> {
 
@@ -28,7 +29,7 @@ public class WalkingFarm implements State<FarmerBilly> {
             farmer.next = farmer.Randomi();
             System.out.printf("%d\n", farmer.next);
             if(farmer.next != 1) {
-                farmer.ChangeState(LookAtSky.getInstance());
+                farmer.GetStateMachine().ChangeState(LookAtSky.getInstance());
             }
         }
     }
@@ -36,6 +37,11 @@ public class WalkingFarm implements State<FarmerBilly> {
     @Override
     public void Exit(FarmerBilly farmer) {
         System.out.println("Indo fazer outra coisa.");
+    }
+
+    @Override
+    public boolean onMessage(FarmerBilly farmer, Message msg) {
+        return false;
     }
 
 }

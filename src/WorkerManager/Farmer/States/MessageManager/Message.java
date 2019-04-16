@@ -1,17 +1,17 @@
-package Farmer.States.MessageManager;
+package WorkerManager.Farmer.States.MessageManager;
 
-import Farmer.Farmer;
+import WorkerManager.Farmer.Worker;
 
 public class Message
 {
-    private  Farmer m_sender;
-    private Farmer m_receiver;
+    private Worker m_sender;
+    private Worker m_receiver;
     private String m_msg;
     private Object m_objectExtra;
 
 
     //Com info extra
-    public Message(Farmer sender, Farmer receiver, String myMessage, Object extraInfo)
+    public Message(Worker sender, Worker receiver, String myMessage, Object extraInfo)
     {
         m_sender = sender;
         m_receiver = receiver;
@@ -20,7 +20,7 @@ public class Message
     }
 
     //Sem info extra
-    public  Message (Farmer sender, Farmer receiver, String myMessage)
+    public  Message (Worker sender, Worker receiver, String myMessage)
     {
         m_sender = sender;
         m_receiver = receiver;
@@ -29,9 +29,9 @@ public class Message
 
     public String GetMessage(){return  m_msg;}
 
-    public Farmer GetReceiver() {return m_receiver;}
+    public Worker GetReceiver() {return m_receiver;}
 
-    public Farmer GetSender() {return m_sender;}
+    public Worker GetSender() {return m_sender;}
 
     public Object GetObject() {return m_objectExtra;}
 

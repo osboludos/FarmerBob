@@ -1,11 +1,11 @@
-package Farmer;
+package WorkerManager.Farmer;
 
-import Farmer.States.State;
-import Farmer.States.StateMachine;
+import WorkerManager.Farmer.States.State;
+import WorkerManager.Farmer.States.StateMachine;
 
 import java.util.Random;
 
-public class FarmerBilly extends Farmer {
+public class FarmerBilly extends Worker {
 
     public int tedio = 0;
 
@@ -15,22 +15,20 @@ public class FarmerBilly extends Farmer {
 
     private boolean m_worked = false;
 
-    public FarmerBilly(State<FarmerBilly> initialState)
+    public FarmerBilly(String name, State<FarmerBilly> initialState)
     {
         super("Billy");
-        m_stateMachine = new StateMachine(this);
-        ChangeState(initialState);
+        m_stateMachine = new StateMachine<FarmerBilly>(this);
+        m_stateMachine.ChangeState(initialState);
+
     }
 
     public void Run(){
         m_stateMachine.Update();
     }
 
-    @Override
-    public void Update() { m_stateMachine.Update(); }
-
-    public void ChangeState(State next){
-        m_stateMachine.ChangeState(next);
+    public StateMachine<FarmerBilly> GetStateMachine(){
+        return m_stateMachine;
     }
 
     public int Randomi(){
